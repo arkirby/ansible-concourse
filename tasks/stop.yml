@@ -2,8 +2,8 @@
   service:
     name: concourse-web
     state: stopped
-  become: yes
-  ignore_errors: yes
+  become: true
+  ignore_errors: true
   when: concourse_web
   tags:
   - no-test
@@ -12,8 +12,8 @@
   service:
     name: concourse-worker
     state: stopped
-  become: yes
-  ignore_errors: yes
+  become: true
+  ignore_errors: true
   when: concourse_worker
   tags:
   - no-test

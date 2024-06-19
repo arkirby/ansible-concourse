@@ -3,7 +3,7 @@
   group:
     name: "{{ concourse_group }}"
     gid: "{{ concourse_gid }}"
-  become: yes
+  become: true
 
 - name: concourse user
   user:
@@ -12,5 +12,5 @@
     uid: "{{ concourse_uid }}"
     group: "{{ concourse_group }}"
     shell: "/bin/false"
-    createhome: no
-  become: yes
+    createhome: false
+  become: true

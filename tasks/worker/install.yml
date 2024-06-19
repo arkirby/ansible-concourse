@@ -6,9 +6,10 @@
     mode: 0750
     owner: "{{ concourse_user }}"
     group: "{{ concourse_group }}"
-  become: yes
+  become: true
 
-- include: filesystem.yml
+- ansible.builtin.include_tasks:
+    file: filesystem.yml
 
 - name: create worker launch script
   template:
@@ -17,8 +18,8 @@
     owner: "{{ concourse_user }}"
     group: "{{ concourse_group }}"
     mode: "{{ concourse_worker_binary_mode }}"
-    force: yes
-  become: yes
+    force: true
+  become: true
   notify:
     - restart concourse worker
 
@@ -29,8 +30,8 @@
     owner: "{{ concourse_user }}"
     group: "{{ concourse_group }}"
     mode: "{{ concourse_worker_binary_mode }}"
-    force: yes
-  become: yes
+    force: true
+  become: true
 
 - name: create worker retire script
   template:
@@ -39,16 +40,16 @@
     owner: "{{ concourse_user }}"
     group: "{{ concourse_group }}"
     mode: "{{ concourse_worker_binary_mode }}"
-    force: yes
-  become: yes
+    force: true
+  become: true
 
 - name: create worker service
   template:
     src: concourse-worker.service.j2
     dest: /etc/systemd/system/concourse-worker.service
     owner: root
-    force: yes
-  become: yes
+    force: true
+  become: true
   register: concourse_worker_service
   notify:
     - restart concourse worker

@@ -2,7 +2,7 @@
   service:
     name: concourse-web
     enabled: "{{ concourse_service_enabled }}"
-  become: yes
+  become: true
   when: concourse_web
   tags:
   - no-test
@@ -11,7 +11,7 @@
   service:
     name: concourse-worker
     enabled: "{{ concourse_service_enabled }}"
-  become: yes
+  become: true
   when: concourse_worker
   tags:
   - no-test
@@ -20,7 +20,7 @@
   service:
     name: concourse-web
     state: started
-  become: yes
+  become: true
   when: concourse_web and concourse_service_enabled and concourse_service_start
   tags:
   - no-test
@@ -29,7 +29,7 @@
   service:
     name: concourse-worker
     state: started
-  become: yes
+  become: true
   when: concourse_worker and concourse_service_enabled and concourse_service_start
   tags:
   - no-test

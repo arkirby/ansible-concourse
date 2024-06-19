@@ -1,6 +1,8 @@
 ---
-- include: web/configure.yml
+- ansible.builtin.include_tasks:
+    file: web/configure.yml
   when: concourse_web
 
-- include: worker/configure.yml
+- ansible.builtin.include_tasks:
+    file: worker/configure.yml
   when: concourse_worker

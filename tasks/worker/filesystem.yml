@@ -3,28 +3,28 @@
   modprobe:
     name: btrfs
     state: present
-  become: yes
+  become: true
   when: concourse_baggageclaim_driver == "btrfs"
 
 - name: install btrfs-progs package
   package:
     name: btrfs-progs
     state: present
-  become: yes
+  become: true
   when: concourse_baggageclaim_driver == "btrfs"
 
 - name: probe overlay module
   modprobe:
     name: overlay
     state: present
-  become: yes
+  become: true
   when: concourse_baggageclaim_driver == "overlay"
 
 - name: unmount work volume
   mount:
     path: "{{ concourse_work_volume_mount_path }}"
     state: unmounted
-  become: yes
+  become: true
   when: concourse_manage_work_volume
 
 - name: create work volume filesystem
@@ -33,7 +33,7 @@
     fstype: "{{ concourse_work_volume_fs_type }}"
     force: "{{ concourse_work_volume_fs_force_create }}"
     resizefs: "{{ concourse_work_volume_fs_resize }}"
-  become: yes
+  become: true
   when: concourse_manage_work_volume
 
 - name: mount work volume
@@ -43,5 +43,5 @@
     fstype: "{{ concourse_work_volume_fs_type }}"
     opts: "{{ concourse_work_volume_mount_opts }}"
     state: mounted
-  become: yes
+  become: true
   when: concourse_manage_work_volume
